@@ -1,60 +1,54 @@
-*** Django rest_framework views.py ***
-#import
-from django.shortcuts import render
-from .models import Clients
-from .serializers import NameSerializer
-from rest_framework.response import Response
-from rest_framework.decorators import api_view
-from rest_framework import status
+*** Django rest api ****
+*** Class based views ****
+# imports 
+from rest_framework.views import APIView
 
-# Create your views here.
-
-#api_view decorator
-@api_view(['GET', 'POST', 'PUT', 'PATCH', 'DELETE'])
-def clients_api(request, pk=None):
-    id = pk
-	# single or multiple data list
-    if request.method == 'GET':
+# Rest api
+class ClassName(APIView):
+    # get method
+    def get(self, request,pk=None format=None):
+        id = pk
+        # single or multiple data list
         if id is not None:
             data = ModelName.objects.get(id=id)
             sr_data = NameSerializer(data)
-            return Response(sr_data.data, status=status.HTTP_200_OK)
+                return Response(sr_data.data, status=status.HTTP_200_OK)
 
         data = ModelName.objects.all()
         sr_data = NameSerializer(data, many=True)
         return Response(sr_data.data, status=status.HTTP_200_OK)
-		
-		
-	# Create new data
-    if request.method == 'POST':
+
+    # post method
+    def post(self, request, format=None):
         sr_data = NameSerializer(data=request.data)
         if sr_data.is_valid():
             sr_data.save()
             return Response('Data saved successfully', status=status.HTTP_201_CREATED)
         return Response(sr_data.errors,status=status.HTTP_400_BAD_REQUEST)
 
-	# update full data
-    if request.method == 'PUT':
+    # put method
+    def put(self, request,pk=None, format=None):
+        id = pk
         data = ModelName.objects.get(id=id)
         sr_data = NameSerializer(data, data=request.data)
         if sr_data.is_valid():
             sr_data.save()
             return Response('Data updated successfully', status=status.HTTP_200_OK)
-
         return Response(sr_data.errors,status=status.HTTP_400_BAD_REQUEST)
 
-	# update data
-    if request.method == 'PATCH':
+    # patch method
+    def patch(self, request,pk=None, format=None):
+        id = pk
         data = ModelName.objects.get(id=id)
         sr_data = NameSerializer(data, data=request.data, partial=True)
         if sr_data.is_valid():
             sr_data.save()
             return Response('Data updated successfully', status=status.HTTP_200_OK)
-
         return Response(sr_data.errors,status=status.HTTP_400_BAD_REQUEST)
-	
-	# delete data
-    if request.method == 'DELETE':
+
+    # delete method
+    def delete(self, request, pk=None, format=None):
+        id = pk
         data = ModelName.objects.get(id=id)
         data.delete()
-        return Response('Data deleted successfully',  status=status.HTTP_200_OK)
+        return Response('Data deleted successfully', status=status.HTTP_200_OK)
