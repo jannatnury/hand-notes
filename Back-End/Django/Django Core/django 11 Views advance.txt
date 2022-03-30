@@ -1,0 +1,47 @@
+*** Django Views advanced:
+	* Function based view
+	* Class based view
+	
+* Function based view:
+	def name(request):
+		return render(request, 'html file link')
+		
+* Class based view:
+	* Base View
+	* Generic View
+	
+* Base View:
+	* View
+	* TemplateView
+	* RedirectView
+	
+* View:
+	# imports
+	from django.views import View
+	
+	class ViewName(View):
+		def get(self, request, pk):
+			context = { }
+			return render(request, 'html file link', context)
+			
+		def post(self, request, pk):
+			return render(request, 'html file link')
+			
+* TemplateView:
+	# imports
+	from django.views.generic.base import TemplateView
+	
+	class ViewName(TemplateView):
+		template_name = 'html file link'
+		def get_context_data(self, **kwargs):
+			context = super().get_context_data(**kwargs)
+			name = value
+			context = {'name':name}
+			return context
+			
+* RedirectView:
+	# imports
+	from django.views.generic.base import RedirectView
+	
+	urls.py:
+	path('home/' views.RedirectView.as_view(url='/'), name = 'url_name')

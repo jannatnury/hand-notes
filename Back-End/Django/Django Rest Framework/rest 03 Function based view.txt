@@ -1,0 +1,60 @@
+*** Django rest_framework views.py ***
+#import
+from django.shortcuts import render
+from .models import Clients
+from .serializers import NameSerializer
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+from rest_framework import status
+
+# Create your views here.
+
+#api_view decorator
+@api_view(['GET', 'POST', 'PUT', 'PATCH', 'DELETE'])
+def clients_api(request, pk=None):
+    id = pk
+	# single or multiple data list
+    if request.method == 'GET':
+        if id is not None:
+            data = ModelName.objects.get(id=id)
+            sr_data = NameSerializer(data)
+            return Response(sr_data.data, status=status.HTTP_200_OK)
+
+        data = ModelName.objects.all()
+        sr_data = NameSerializer(data, many=True)
+        return Response(sr_data.data, status=status.HTTP_200_OK)
+		
+		
+	# Create new data
+    if request.method == 'POST':
+        sr_data = NameSerializer(data=request.data)
+        if sr_data.is_valid():
+            sr_data.save()
+            return Response('Data saved successfully', status=status.HTTP_201_CREATED)
+        return Response(sr_data.errors)
+
+	# update full data
+    if request.method == 'PUT':
+        data = ModelName.objects.get(id=id)
+        sr_data = NameSerializer(data, data=request.data)
+        if sr_data.is_valid():
+            sr_data.save()
+            return Response('Data updated successfully', status=status.HTTP_200_OK)
+
+        return Response(sr_data.errors)
+
+	# update data
+    if request.method == 'PATCH':
+        data = ModelName.objects.get(id=id)
+        sr_data = NameSerializer(data, data=request.data, partial=True)
+        if sr_data.is_valid():
+            sr_data.save()
+            return Response('Data updated successfully', status=status.HTTP_200_OK)
+
+        return Response(sr_data.errors)
+	
+	# delete data
+    if request.method == 'DELETE':
+        data = ModelName.objects.get(id=id)
+        data.delete()
+        return Response('Data deleted successfully',  status=status.HTTP_200_OK)

@@ -1,0 +1,36 @@
+*********************************
+*** VS CODE
+*** VS-Code Extensions
+
+*** Auto close tag
+*** Beautify
+*** Bootstrap
+*** Bracket Pair colorizer
+*** Code spell checker
+*** Color Highlight
+*** Color Picker
+*** CSS peek
+*** Es lint
+*** Html CSS Support
+*** IntelliSense for css claas names html
+*** JavaScript (ES06) code snippets
+*** live Server
+*** Path Intellisense
+*** Project Manager
+*** Quokka.js
+*** ES7 React/Redux/GraphQL/React-Native snippets
+*** Kite
+
+*********************************
+*** Notepad ++
+
+*********************************
+*** Node.js
+
+*********************************
+*** Python
+
+*********************************
+*** XAMPP
+
+*********************************

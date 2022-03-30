@@ -1,0 +1,53 @@
+*** Django Generic Views ***
+*** ListView ***
+
+# imports
+from django.views.generic.list import ListView
+from .models import ModelName
+from django.utils import timezone
+
+# ListView returns a list of all objects in database
+class ClassName(ListView):
+	model = ModelName
+	template_name = 'html file link'
+	context_object_name = 'context name'
+	template_name_suffix = '_get/any'
+      paginate_by = 100  # if pagination is desired
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['now'] = timezone.now()
+        return context
+	
+	def get_queryset(self):
+		return ModelName.objects.filter().order_by()
+		
+	def get_templates_names(self):
+		if self.request.is_superuser:
+			template_name = 'html file link'
+		else:
+			template_name = self.template_name
+			
+		return [template_name]
+		
+
+*****************************************************************************************
+*****************************************************************************************
+# DetailView returns a single objects form database by id/slug
+# imports
+from django.views.generic.detail import DetailView
+
+#views
+class ViewName(DetailView):
+	model = ModelName
+	template_name = 'html link'
+	context_object_name = 'context name'
+	
+	def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['now'] = timezone.now()
+        return context	
+	
+	
+url: path('details/<str:pk>', views.ViewName.as_view(), name='Url - Name')
+

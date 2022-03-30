@@ -1,0 +1,30 @@
+*** Components with props ***
+components 2 types
+
+*** props used to send data from parents to child components ***
+
+function AppName(props){
+	return <div> {props.name} </div>
+}
+
+const AppName = (props) =>{
+	return <div> {props.name} </div>
+}
+
+<AppName name='Sabbir' />
+
+export default AppName;
+
+*** Class components *** used for data/logical and jsx layer ***
+
+import react from 'react';
+
+class AppName extends React.component {
+	render(){
+		return <div> {this.props.name} </div>
+	}
+}
+
+<AppName name='Sabbir' />
+
+export default AppName;

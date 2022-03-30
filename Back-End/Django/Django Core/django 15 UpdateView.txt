@@ -1,0 +1,44 @@
+*** Django Editing views ***
+*** UpdateView ***
+
+# imports
+from django.views.generic.edit import UpdateView
+from .form import FormName
+from .models import ModelName
+from django.contrib.messages.views import SuccessMessageMixin
+
+***************************************************************************************
+***************************************************************************************
+***************************************************************************************
+
+# views method 1
+class ClassName(SuccessMessageMixin, UpdateView):
+	model = ModelName
+	fields = ['']
+	template_name = ''
+	success_url = ''
+	success_message = 'Doc successfully created!'
+    error_message = 'Error saving the Doc, check fields below.'
+
+	
+	def get_form(self):
+		from = super()>get_form()
+		form.fields[name].widtget = forms.FieldType(attrs={'class':'className'})
+		return form
+		
+# url : path('update/<str:pk>/', views.ClassName.as_view(), name='url-name')
+		
+****************************************************************************************
+****************************************************************************************
+****************************************************************************************
+
+# views method 2
+class ClassName(SuccessMessageMixin,UpdateView):
+	model = ModelName
+	form_class = FormName
+	initial = {"title": "Placeholder title"}
+	template_name = 'html file'
+	success_url = 'url'
+	success_message = 'Doc successfully created!'
+    error_message = 'Error saving the Doc, check fields below.'
+	

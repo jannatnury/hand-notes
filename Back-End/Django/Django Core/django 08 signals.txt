@@ -1,0 +1,100 @@
+***  Django Signals:
+	* Built in signals:
+		* Auth signals
+		* Model Signals
+		* Management signals
+		* Request/Response Signals
+		* Database Wrappers signals
+	
+	* Auth Signals:
+		# imports
+		django.contrib.auth.signals
+		
+		* user_logged_in(sender, request, user, **kwargs)
+		* user_logged_out(sender, request, user, **kwargs)
+		* user_login_failed(sender, request, credentials, user, **kwargs)
+		
+		# connecting signals:
+			* manual connect:
+				user_logged_in.connect(login_success, sender = user)
+				
+			* auto connect:
+				from django.dispatch import reciver
+				@reciver(user_logged_out, sender=user)
+			
+			
+			
+	* Models Signals:
+		# imports
+		django.db.models.signals
+		
+		* pre_init(sender, *args, **kwargs)
+		* post_init(sender, instance)
+		* pre_save(sender, instance, raw, using, update_fields)
+		* post_save(sender, instance, created, raw, using, update_fields)
+		* pre_delete(sender, instance, using)
+		* post_delete(sender, instance, using)
+		
+		# connecting signals:
+			* manual connect:
+				post_save.connect(login_success, sender = user)
+				
+			* auto connect:
+				from django.dispatch import reciver
+				@reciver(post_save, sender=user)
+			
+			
+		
+	* Request/Response Signals:
+		# imports
+		django.core.signals
+		
+		* request_started(sender, environ)
+		* request_finished(sender)
+		* got_request_exception(sender, request)
+		
+		# connecting signals:
+			* manual connect:
+				request_started.connect(login_success, sender = user)
+				
+			* auto connect:
+				from django.dispatch import reciver
+				@reciver(request_started, sender=user)
+			
+			
+		
+		
+	* Management Signals:
+		# imports
+		django.db.models.signals
+		
+		* pre_migrate(sender, app_config, verbosity, interactive, using, plan, apps)
+		* post_migrate(sender, app_config, verbosity, interactive, using, plan, apps)
+		
+		# connecting signals:
+			* manual connect:
+				pre_migrate.connect(login_success, sender = user)
+				
+			* auto connect:
+				from django.dispatch import reciver
+				@reciver(pre_migrate, sender=user)
+			
+			
+		
+		
+	* Database Wrappers:
+		# imports
+		django.db.backends.signals
+		
+		* connection_created(sender, connection)
+		
+		# connecting signals:
+			* manual connect:
+				connection_created.connect(login_success, sender = user)
+				
+			* auto connect:
+				from django.dispatch import reciver
+				@reciver(connection_created, sender=user)
+			
+			
+		

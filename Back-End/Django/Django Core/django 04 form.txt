@@ -1,0 +1,77 @@
+*** Django Form
+	* create forms.py
+	#imports 
+	from django import forms
+
+	class NameForm(forms.Form):
+		field_name = forms.Field_type(label='Your name', max_length=100, conditions)
+		
+	* views.py
+	# imports
+	from .forms import NameForm
+	
+	fm = NameForm(auto_id=True/False, labe_suffix = '', initial = value)
+	
+	* form rendering
+	{{form}}
+	{{form.as_table}}
+	{{form.as_p}}
+	{{form.field_name.label}}
+	{{form.field_name.label_tag}}
+	{{form.field_name}}
+	{{form.field_name.errors}}
+	
+	* loop form
+	{% for field in form %}
+		{{field.label_tag}}
+		{{field}}
+	{% endfor %}
+	
+	* hidden field
+	{% for hidden in form.hidden_field %}
+		{{hidden}}
+	{% endfor %}
+	
+	
+*** form core arguments
+	1. required = True/False
+	2. label = ' Field Name ' 
+	3. labe_suffix = ' : / - '
+	4. intial = ' value '
+	5. disabled = True/False
+	6. help_text = ' text '
+	
+	7. widget = forms.widgettype(attrs={'class':'className', 'id':'idName'})
+	
+*** django form widgets
+	* Textarea
+	* TextInput
+	* NumberInput
+	* EmailInput
+	* URLInput
+	* PasswordInput
+	* HiddenInput
+	* MultipleHiddenInput
+	* DateTimeInput
+	* DateInput
+	* TimeInput
+	* CheckboxInput
+	* CheckboxSelectMultipule
+	* RadioSelect
+	* Select
+	* SelectMultiple
+	* FileInput
+	* ClearableFileInput
+	
+
+*** Django ModelForm
+	class FormName(forms.ModelForm):
+		class Meta:
+			Model : ModelName
+			fields : ['fieldName'] or '__all__'
+			exclude : ['fieldName']
+			labels : {'fieldName' : 'field label',}
+			help_text : {'fieldName' : 'field help_text',}
+			error_messages : { 'fieldName':{'required':'this field is reqired},}
+			widgets = {'fieldName':forms.widgettype(attrs={'class':'className','id':'idName'}),}
+			

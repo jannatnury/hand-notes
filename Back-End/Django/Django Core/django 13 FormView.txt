@@ -1,0 +1,18 @@
+*** Django Editing View ***
+*** FormView ***
+
+#imports
+from django.views.generic.edit import FormView
+from django.contrib.messages.views import SuccessMessageMixin
+from .forms import FormName
+
+#views
+class ClassName(SuccessMessageMixin, FormView):
+	form_class = FormName
+	template_name = 'html file link'
+	success_url = 'url'
+	success_message = 'Doc successfully created!'
+    error_message = 'Error saving the Doc, check fields below.'
+	
+	def form_valid(self, form):
+		return super().form_valid(form)

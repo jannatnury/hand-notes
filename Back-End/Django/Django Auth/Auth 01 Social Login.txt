@@ -1,0 +1,40 @@
+*** Django social authentication:
+	* Install social application: social-auth-app-django 4.0.0
+	
+	* setting.py:
+	
+		INSTALLED_APPS = [
+			'social_django',
+		]
+			
+		# social authenticate backend
+
+		AUTHENTICATION_BACKENDS = (
+			'social_core.backends.facebook.FacebookOAuth2',
+			'social_core.backends.twitter.TwitterOAuth',
+			'social_core.backends.github.GithubOAuth2',
+			'social_core.backends.google.GoogleOAuth2',
+			'django.contrib.auth.backends.ModelBackend',
+		)
+	
+		
+		SOCIAL_AUTH_FACEBOOK_KEY = '50624774'  # App ID
+		SOCIAL_AUTH_FACEBOOK_SECRET = 'a99cc'  # App Secret
+
+		SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '.apps.googleusercontent.com'  # App ID
+		SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'HFdF1jpK2fsLALN71'  # App Secret
+
+		LOGIN_REDIRECT_URL = 'url_name'
+		
+		
+		
+	* urls.py:
+		# social login
+		path('oauth/', include('social_django.urls', namespace='social')),
+		
+		
+		
+	* html file:
+		<a class="btn" href="{% url 'social:begin' 'facebook' %}">Facebook</a>
+        <a class="btn" href="{% url 'social:begin' 'google-oauth2' %}">Google+</a>
+

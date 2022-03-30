@@ -1,0 +1,79 @@
+*** Django Cache:
+	* django cache configuration ways:
+		* Database caching
+		* Filebased caching
+
+	
+	* configurations:
+		* Database caching:
+		* settings.py:
+			* CACHES = {
+				'default':{
+					'BACKEND':'django.core.cache.backends.db.DatabaseCache',
+					'LOCATION' : 'Table_Name',
+					}
+				}
+			cmd:  py ./manage createcachetable
+			
+		* Filebased caching:
+		* settings.py:
+			* CACHES = {
+				'default':{
+					'BACKEND' : 'django.core.cache.backends.filebased.FileBasedCache',
+					'LOCATION' : 'folder path',
+					}
+				}
+		* py ./manage.py runserver
+		
+*** Implement ways:
+	* persite caching
+	* perview caching
+	* template fragment caching
+	
+	* persite caching:
+		* config:
+			MIDDLEWARE =[
+				'django.middleware.cache.UpdateCacheMiddleware',
+				'django.middleware.common.CommonMiddleware',
+				'django.middleware.cache.FetchFormCacheMiddleware',
+				]
+				
+	* per view caching with views:
+		* views.py
+			#imports
+			from django.views.decorators.cache import cache_page
+			
+			#view function
+			@cache_page(time,cache = ' anything ', key_prefix = ' anything ')
+			def home(request):
+				view....func.
+				
+	* per view caching with urls.py:
+		* urls.py
+			#imports
+			from django.views.decorators.cache import cache_page
+			
+			#urls
+			path('route/', cache_page(time, cache='', key_prefix='')(view_func))
+			
+*** Django low label cache api:
+	
+	# imports
+	from django.core.cache import cache
+	
+	*** Methods:
+		* cache.set(key, value, time/None, version = int)
+		* cache.get(key, default = 'value', version = int)
+		* cache.add(key, value, time/None, version)
+		* cache.get_or_set(key, default = 'value', time/None, version = int)
+		* cache.set_many(dictonary, time/None, version = int)
+		* cache.get_many(keys, version = int)
+		* cache.delete(key, version = int)
+		* cache.delete_many(keys, version = int)
+		* cache.clear()
+		* cache.touch(key, time/None, version = int)
+		* cache.iner(key, delta = int, version = int)
+		* cache.dcer(key, delta = int, version = int)
+		* cache.close()
+		
+	*** use those methods in view function.

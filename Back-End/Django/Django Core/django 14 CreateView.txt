@@ -1,0 +1,40 @@
+*** Django Editing views ***
+*** CreateView ***
+
+# imports
+from django.views.generic.edit import CreateView
+from .form import FormName
+from django.contrib.messages.views import SuccessMessageMixin
+from .models import ModelName
+
+***************************************************************************************
+***************************************************************************************
+***************************************************************************************
+
+# views method 1
+class ClassName(SuccessMessageMixin, CreateView):
+	model = ModelName
+	fields = ['']
+	success_url = ''
+	template_name = ''
+	success_message = 'Doc successfully created!'
+    error_message = 'Error saving the Doc, check fields below.'
+	
+	def get_form(self):
+		from = super()>get_form()
+		form.fields[name].widtget = forms.FieldType(attrs={'class':'className'})
+		return form
+		
+****************************************************************************************
+****************************************************************************************
+****************************************************************************************
+
+# views method 2
+class ClassName(CreateView):
+	form_class = FormName
+	initial = {"title": "Placeholder title"}
+	template_name = 'html file'
+	success_url = 'url'
+	success_message = 'Doc successfully created!'
+    error_message = 'Error saving the Doc, check fields below.'
+	

@@ -1,0 +1,115 @@
+install webpack for convert JavaScript ES06 codes to ES05
+*** installing Webpack ***
+
+npm init -y
+
+** For install Webpack
+npm i -D webpack  
+
+** For install Webpack cli
+npm i -D webpack-cli
+
+**configaration
+webpack.config.js  
+const path = require('path')
+
+module.exports={
+       entry : './index.js',  ** Source JavaScript file
+       output: {
+             filename:'build.js',
+             path: path.resolve(__dirname,'dist')}}
+
+
+package.json  **configaration
+
+script:
+    "build":"webpack"
+
+
+npm run build  ** for build project
+
+*** babbel-loader for conver ES06 to ES05 ***
+
+npm i -D babel-loader @babel/core @babel/preset-env webpack
+
+*** Webpack Config:
+
+module: {
+  rules: [
+    {
+      test: /\.js$/,
+      exclude: /(node_modules|bower_components)/,
+      use: {
+        loader: 'babel-loader',
+        options: {
+          presets: ['@babel/preset-env']
+        }
+      }
+    }
+  ]
+}
+
+
+*** Jquery For smart coding //write less, do more ***
+npm i jquery
+
+webpack config:
+const webpack = require('webpack')
+
+new webpack.ProvidePlugin({
+  $: 'jquery',
+  jQuery: 'jquery'
+});
+
+*** index.js config:
+var $ = require( "jquery" );
+
+
+
+*** css loader and bootstrap
+
+npm install --save-dev css-loader
+npm install --save-dev mini-css-extract-plugin
+npm install sass-loader sass --save-dev
+npm install bootstrap@next
+
+         {
+            test: /\.s[ac]ss$/,
+            use: [
+              MiniCssExtractPlugin.loader,
+              
+              "css-loader", 
+              "sass-loader"
+            ],
+          }
+new MiniCssExtractPlugin({
+          filename: "[name].css",
+          chunkFilename:"[id].css"
+        })
+
+*** html loader
+
+npm install --save-dev html-loader
+npm install --save-dev html-webpack-plugin
+
+          {
+            test: /\.html$/,
+            loader: 'html-loader',
+          }
+
+new HtmlWebpackPlugin({
+          template:'./src/index.html'
+        })
+
+*** webpack dev server
+
+npm install webpack-dev-server --save-dev
+
+webpack.config.js
+devServer: {
+      compress: true,
+      port: 7469,
+      open:true
+    }
+package.json
+"start": "webpack serve",

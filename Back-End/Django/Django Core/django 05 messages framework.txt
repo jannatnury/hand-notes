@@ -1,0 +1,28 @@
+*** django messages framework:
+	* messages tags:
+		* debug
+		* info
+		* success
+		* warning
+		* error
+		
+	# imports 
+	from django.contrib import messages
+	
+	# function based view
+	def home(request):
+		messages.info(request, 'Message')
+		return render(request, 'html')
+		
+	# class based view
+	from django.contrib.messages.views import SuccessMessageMixin
+	class CreateRedirect (SuccessMessageMixin, CreateView):
+        success_message = "Redirect successfully created!"
+		
+	* messages rendering 
+		{% if messages %}
+			{% for msg in messages %}
+				{{msg}}
+			{% endfor %}
+		{% endif %}
+		

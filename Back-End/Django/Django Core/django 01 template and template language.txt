@@ -1,0 +1,52 @@
+*** Dajngo templates and template language:
+
+*** configuration ways:
+	1. project root
+	2. application root
+	
+	1. project root:
+		configuration: 
+		settings.py
+			settings.py : Templates = [ 'DIR': [BASE_DIR/ 'templates']]
+			
+			create templates folder in project root.
+			
+	2. application root:
+		configuration:
+		settings.py
+			settings.py : 'APP_DIRS' : True,
+			
+			create templates folder in application root.
+
+*** template inheritance:
+	* create base.html file with django block
+	<! doctype html>
+	<html>
+	{% block content %} {% endblock %}
+	</html>
+	
+	* create sub html file:
+	{% extends 'home/base.html' %}
+	{% block content %} content {% endblock %}
+	
+	* include another html file:
+	{% include 'home/side.html' %}
+	
+*** template language:
+	* variable:
+		{{i.name}}
+	* if else:
+		{% if name %}
+			{{name.title}}
+		{% elif name.listed %}
+			{{name.listed}}
+		{% else %}
+			{{nothing}}
+		{% endif %}
+		
+	* forloop:
+		{% for i in name %}
+			{{i.title}}
+			{{i.address}}
+		{% endfor %}
+	

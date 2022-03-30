@@ -1,0 +1,17 @@
+*** Virtual Environment:
+
+	*** install venv on local.
+		py -m pip install --user virtualenv 
+
+	*** to create virtual environment:
+		python -m venv .  or folder name
+ 		. used for not creating folder
+
+	*** Active venv:
+		.\Scripts\activate
+
+	*** Update venv
+		python -m venv --upgrade . / env_dir
+
+	*** terminal fixing:
+		Set-ExecutionPolicy Unrestricted

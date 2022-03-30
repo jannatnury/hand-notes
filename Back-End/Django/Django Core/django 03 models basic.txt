@@ -1,0 +1,90 @@
+*** Models
+	* creating models
+		*models.py
+		#imports
+		from django.db import models
+		
+		class ModelName(models.Model):
+			fieldname = model.fieldtype(condition)
+			
+			def __str__(self):
+				return self.fieldname
+				
+		
+		# conditions:
+		* max_length = 245
+		* min_length = 30
+		* blank = True/False
+		* Null = True/False
+		* unique = True/False
+		* upload_to = 'dir'
+		* choices = variable or tupples
+		* default = 'value'
+		* primary_key = True/False
+		* verbose_name = '' for form label
+		
+		
+		# model fields
+		* AutoField
+		* BigAutoField
+		* IntegerField
+		* BigIntegerField
+		* FloatField
+		* DecimalField
+		* BooleanField
+		* CharField
+		* TextField
+		* EmailField
+		* ImageField
+		* FileField
+		* DateField
+		* DateTimeField
+		* TimeFiled
+		* URLField
+		* SlugField
+		
+*** register models in admin panel
+	* admin.py
+	# imports
+	from django.contrib import admin
+	from .models import *
+	
+	# register models without @
+	admin.site.register(modelName)
+	
+	admin.site.register(modelName, ModelAdmin className)
+	
+	# register model with @
+	@admin.register(ModelName)
+	class className(admin.ModelAdmin):
+		list_display = ('id','field Name')
+		list_display_links = ('id', 'field name')
+
+*** active models
+	cmd: py ./manage.py makemigrations
+	cmd: py ./manage.py migrate
+	
+*** Models Queryset
+	.all()
+	.filter()
+	.exclude()
+	.order_by()
+	.reverse()
+	[:5]
+	.get()
+	.latest()
+	.earliest()
+	.first()
+	.last()
+	.exists()
+	.create()
+	.update()
+	.get_or_create()
+	.update_or_create()
+	.bulk_create()
+	.bulk_update()
+	.delete()
+	.aggregation(Avg/Sum/Min/Max/Count())
+	.filter(Q(id=6) & Q(roll=100) And operator
+	.filter(Q(id=6) | Q(roll=100) Or operator
+	.filter(~Q(id=6) Negation operator

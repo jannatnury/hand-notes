@@ -1,0 +1,48 @@
+Django Basic to Advanced:
+
+*** Start a django project:
+	cmd: django-admin startproject projectname
+	
+*** Start Server
+	cmd: py ./manage.py runserver
+	
+*** Create application for project
+	cmd: django-admin startapp appname
+	
+*** installing application:
+	settings.py:
+		INSTALLED_APPS=[
+			'appname'
+		]
+		
+*** put all apps in one directory:
+	cmd: mkdir apps or create apps directory for all application
+	config apps.py in all application:
+	class appnameConfig(AppConfig):
+		default_auto_field = 'django.db.models.BigAutoField'
+		name = 'apps.appname' or 'directoryname.appname'
+		
+*** views.py
+	* imports
+	from django.shortcuts import render
+	
+	* view function
+	def home(request):
+		return render(request,'html file link')
+		
+	* when we create a view we need to create a url for that view
+	
+*** urls.py 
+	* imports
+	from django.urls import path,include
+	from . import views
+	
+	* urls
+	urlpatterns=[
+		path('home/', views.functionname, name='linkname'),
+		path('accounts/', include('applicationName.urls)),
+		]
+		
+	* path() used for create a link
+	* include() used for mapped another application url
+	* name used for create hyperlink

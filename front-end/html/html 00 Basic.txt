@@ -1,0 +1,47 @@
+**** HTML Structure: ***
+<! DOCTYPE html >
+<html>
+    <head>
+        <tittle>Main Website or Web page Title</tittle>
+        <link href="file_path" type="text" rel="stylesheet>
+    </head>
+<body>
+
+</body>
+</html>
+
+*** Comments : <-- write comments  -->
+*** conatiner tags:
+	*<header class="className" id="idname"></header>
+	*<nav class="className" id="idname"></nav>
+	*<main class="className" id="idname"></main>
+	*<section class="className" id="idname"></section>
+	*<div class="className" id="idname"></div>
+	*<span class="className" id="idname"></span>
+	*<aside class="className" id="idname" ></aside>
+	*<footer class="className" id="idname"></footer>
+	
+*** Heading Tags:
+	<h1 class="className" id="idname" title=" content here"> Heading </h1>
+	<h6 class="className" id="idname" title=" content here"> Heading </h6>
+	
+*** Paragraph Tags:
+	<p class="className" id="idname" title=" content here">Paragraph</P>
+	<pre class="className" id="idname" title=" content here">Paragraph</pre>
+	
+*** line break : <br>	
+*** Horizontal Rules : <hr>
+*** bold text : <b>Text</b>
+*** strong text : <strong></strong>
+*** italic text : <i></i>
+*** emphasized : <em></em>
+*** highlight : <mark></mark>
+*** small text : <small></small>
+*** delete text: <del></del>
+*** Underline text : <u></U>
+*** subscript : <sub></sub>
+*** Superscript : <sup></sup> 
+*** abbreviation : <abbr></abbr>
+*** quote : <blockquote></blockquote>
+*** image : <img src="file path" alt="image type" />
+*** ancortag : <a href="link" target="_blank/_parent/_self/_top" download="filename">link name</a>

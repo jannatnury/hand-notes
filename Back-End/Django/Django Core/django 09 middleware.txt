@@ -1,0 +1,32 @@
+*** Django Middlware:
+	* create middleware.py
+		
+		* function based middleware:
+		* def middlewarename(get_response):
+			# one time inisial codes
+			
+			def name(request):
+				before view codes
+				
+				response = get_response(request)
+				after view codes
+				return response
+			return name
+			
+		* class based middleware:
+		* class MiddlwareName:
+			def __init__(self, get_response):
+				self.get_response = get_response
+				# one time inisial codes
+				
+				def __call__(self, request):
+					# before view codes
+					
+					response = self.get_response(request)
+					# after view codes
+					return response
+			
+	* Activate Middlware:
+		* settings.py:
+		
+			MIDDLEWARE = ['applicationname.filename.middlewarename']

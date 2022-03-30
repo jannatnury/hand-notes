@@ -1,0 +1,10 @@
+# Django Rest Framework: start work with python json
+    Convert python data to json data:
+    import json
+    p_data = {name:'Sabbir'}
+    j_data = json.dumps(p_data)
+
+    Convert json data to python data:
+    import json
+    j_data = {"name":"Sabbir"}
+    p_data = json.loads(j_data)

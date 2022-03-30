@@ -1,0 +1,37 @@
+*** static files:
+	*** Configuration ways:
+	
+	1. project root
+	2. application root
+	
+	1. project root:
+		configuration:
+			* settings.py
+				STATIC_URL = '/static/'
+				STATICFILES_DIRS = os.path.join(BASE_DIR, 'static')
+				STATIC_ROOT = os.path.join(BASE_DIR, 'statics')
+				
+		* create static folder in project root
+		* add {% load static %} tag in top of html
+		* <link rel='stylesheet' href="{% static 'app.css' %}" />
+		
+	2. application root:
+		configuration: None
+		
+		* create static folder in application root.
+		
+*** Media files:
+	configuration:
+		* settings.py 
+			MEDIA_URL = '/media/'
+			MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+			
+		* urls.py
+			#imports
+			from django.conf.urls.static import static
+			from django.conf import settings
+			
+			urlpatterns = []+static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)
+			
+		* collect static
+		cmd: py ./manage.py collectstatic

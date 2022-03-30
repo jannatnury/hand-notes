@@ -1,0 +1,19 @@
+*** Setup Environment ***
+
+*** setup environment with createapp.dev
+
+* Download empty project from createapp.dev
+* run npm install
+* open in vs code
+
+
+*** setup environment with cli
+
+* open terminal
+* npx create-react-app appname
+* open in vs code
+
+*** run scripts 
+* npm start  -> to run development server
+* npm run build -> to build product for launch
+* npm run eject -> to add custom tools in react-app

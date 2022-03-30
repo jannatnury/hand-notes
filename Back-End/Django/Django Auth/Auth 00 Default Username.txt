@@ -1,0 +1,63 @@
+*** Django default Username authentication:
+
+	* User login and logout:
+	# imports
+	from django.contrib.auth import authenticate, login, logout
+	
+	# login view:
+		def user_login(request):
+			if request.method == 'POST':
+				username = request.POST.get('username')
+				password = request.POST.get('password')
+
+				user = authenticate(username=username, password=password)
+				if user is not None:
+					login(request, user)
+					return redirect('url_name')
+
+			return render(request, 'html file link')
+			
+			
+	# logout view:
+		def log_out(request):
+			logout(request)
+			return redirect('login')
+			
+			
+			
+	* User Registration:	
+	* create forms.py:
+	
+		# imports
+		from django import forms
+		from django.contrib.auth.forms import UserCreationForm
+		from django.contrib.auth.models import User
+		
+		class UserRegForm(UserCreationForm):
+			class Meta:
+				model = User
+				fields = (
+					'first_name',
+					'last_name',
+					'email',
+					'username',
+					'password1',
+					'password2',
+				)
+
+	* views.py:
+		# imports
+		from .forms import UserRegForm
+		
+		# user registration view:
+		def RegView(request):
+			fm = UserRegForm()
+			if request.method == 'POST':
+				fm = RegForm(request.POST)
+				if fm.is_valid():
+					fm.save()
+					return redirect('login')
+
+			context = {'form': fm}
+			return render(request, 'html file link', context)
+

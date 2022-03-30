@@ -1,0 +1,72 @@
+*** Django Session.
+	* configuration ways:
+		* Database based session
+		* File based session
+		* cached based session
+	
+	* Database Based session configuration:
+		* settings.py
+			* INSTALLED_APPS=[
+				'django.contrib.session',
+				]
+				
+		cmd: py ./manage.py migrate
+		
+	* File based session configuration:
+		* settings.py
+			SESSION_ENGINE = 'django.contrib.sessions.backends.file'
+			SESSION_FILE_PATH = os.path.join(BASE_DIR, 'session')
+			
+		* create folder.
+		
+	* Cache Based Session:
+		* settings.py
+			SESSION_ENGINE = 'django.contrib.sessions.backends.cache or cache_db'
+			SESSION_FILE_PATH = os.path.join(BASE_DIR, 'session')
+		
+	* sessions:
+		* views.py
+			* set: request.session['key'] = 'value'
+			* get: session = request.session.get('Key', default='Guest')
+					context = { 'session': session }
+				
+			* delete: if 'Key' in request.session:
+						del request.session['key']
+						
+					request.session.flush( )
+					request.session.clear_expired( )
+					
+						
+						
+	* session methods:
+		* get_session_cookie_age( )
+		* set_expiry( value )
+		* get_expiry_age( )
+		* get_expiry_date( )
+		* get_expiry_at_browser_close( )
+		* clear_expired( )
+		* modifed = True/Flase
+		* set_test_cookie( )
+		* set_cookie_worked( )
+		* delete_test_cookie( )
+		
+	* session settings:
+		* SESSION_CACHE_ALIAS
+		* SESSION_COOKIE_AGE
+		* SESSION_COOKIE_DOMAIN
+		* SESSION_COOKIE_HTTPONLY
+		* SESSION_COOKIE_NAME
+		* SESSION_COOKIE_PATH
+		* SESSION_COOKIE_SAMESITE
+		* SESSION_COOKIE_SECURE = True/Flase
+		* SESSION_EXPIRE_AT_BROWSER_CLOSE = True/Flase
+		* SESSION_FILE_PATH
+		* SESSION_SAVE_EVERY_REQUEST
+		* SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+							'django.contrib.sessions.backends.file'
+							'django.contrib.sessions.backends.cache'
+							'django.contrib.sessions.backends.cache_db'
+		* SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
+								'dajngo.contrib.sessions.serializers.JSONSerializer'
+								
+								

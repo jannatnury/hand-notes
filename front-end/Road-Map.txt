@@ -1,0 +1,17 @@
+Road-Map For Web Designer And Developer
+
+*** Front-End Developer
+
+  * HTML
+  * CSS 
+	-> BootStrap
+	-> Tailwind
+  * JavaScript
+	-> React 
+	-> Next.js
+
+*** Back-End Developer
+
+ * Python -> Django
+ * Node.js -> express.js
+ 

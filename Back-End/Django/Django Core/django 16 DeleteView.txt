@@ -1,0 +1,19 @@
+*** Django Editing view ***
+*** DeleteView ***
+
+# imports 
+from django.views.generic.edit import DeleteView
+from .models import ModelName
+from django.contrib.messages.views import SuccessMessageMixin
+ 
+class ClassName(SuccessMessageMixin,DeleteView):
+    model = ModelName
+	template_name = 'html file link'
+	success_message = 'Doc successfully created!'
+    error_message = 'Error saving the Doc, check fields below.'
+    success_url ="/"
+	
+url: path('delete/<str:pk>', views.ClassName.as_view(), name='url-name')
+
+html file:
+ create a form for comfirmation. give a cancel link.

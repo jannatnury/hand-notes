@@ -1,0 +1,40 @@
+*** Django Rest Framework ***
+*** Serializer.py ***
+	*** create serializer.py 
+	# imports
+	from rest_framework import serializers
+	
+	# menual serializer class:
+	class SerializerName(serializers.Serializer):
+		# fields
+		name = serializer.FieldName(Conditions)
+		
+		# objects create
+		def create(self, validate_data):
+			return ModelName.objects.create(**validate_data)
+
+		# objects update
+		def update(self, instance, validated_data):
+			instance.name = validated_data.get('name', instance.name)
+			return instance
+		
+		# verify data
+		def validate_name(self, value):
+        if 'django' not in value.lower():
+            raise serializers.ValidationError("Blog post is not about Django")
+        return value
+		
+
+	# ModelSerializer:
+	class ModelNameSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ModelName
+        fields = ['id', 'account_name']/'__all__'
+		exclude = ['users']
+		read_only_fields = ['account_name']
+		
+		# verify data
+		def validate_name(self, value):
+        if 'django' not in value.lower():
+            raise serializers.ValidationError("Blog post is not about Django")
+        return value
