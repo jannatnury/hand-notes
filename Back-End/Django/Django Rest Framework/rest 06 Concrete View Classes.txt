@@ -1,0 +1,52 @@
+*** Django Rest Framework ***
+*** Concrete View Classes ***
+# imports 
+rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView, UpdateAPIView   DestroyAPIView, ListCreateAPIView, RetrieveUpdateAPIView, RetrieveDestroyAPIView, RetrieveUpdateDestroyAPIView
+
+from .models import ModelName
+from .serializer import SerializerName
+
+# get methods
+class ClassName(ListAPIView):
+    queryset = ModelName.objects.all()
+    serializer_class = SerializerName
+
+# get methods
+class ClassName(RetrieveAPIView):
+    queryset = ModelName.objects.all()
+    serializer_class = SerializerName
+
+# post methods
+class ClassName(CreateAPIView):
+    queryset = ModelName.objects.all()
+    serializer_class = SerializerName
+
+# put methods
+class ClassName(UpdateAPIView):
+    queryset = ModelName.objects.all()
+    serializer_class = SerializerName
+
+# delete methods
+class ClassName(DestroyAPIView):
+    queryset = ModelName.objects.all()
+    serializer_class = SerializerName
+
+# get and post methods
+class ClassName(ListCreateAPIView):
+    queryset = ModelName.objects.all()
+    serializer_class = SerializerName
+
+# retrieve and update
+class ClassName(RetrieveUpdateAPIView):
+    queryset = ModelName.objects.all()
+    serializer_class = SerializerName
+
+# retrieve and destroy
+class ClassName(RetrieveDestroyAPIView):
+    queryset = ModelName.objects.all()
+    serializer_class = SerializerName
+
+# retrieve update destroy
+class ClassName(RetrieveUpdateDestroyAPIView):
+    queryset = ModelName.objects.all()
+    serializer_class = SerializerName
