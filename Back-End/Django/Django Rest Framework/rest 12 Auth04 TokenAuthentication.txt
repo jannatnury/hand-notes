@@ -1,0 +1,61 @@
+*** Django Rest Framework ***
+*** TokenAuthentication ***
+
+*** Settings.py ***
+INSTALLED_APPS = [
+    ...
+    'rest_framework',
+    'rest_framework.authtoken',
+    ...
+]
+
+*** Global TokenAuthentication ***
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    )
+}
+
+*** CMD ***
+python manage.py makemigrations
+python manage.py migrate
+
+*** Token Generate ***
+*** Methods 01 ***
+With CMD: python manage.py drf_create_token username
+
+*** Methods 02 ***
+With Admin Dashboard:
+    1. Create User
+    2. Create Token
+
+*** Methods 03 ***
+    * use django signals when user was created
+    * use django signals when user was deleted
+    * use custom class to create Token
+
+*** custom class ***
+from rest_framework.authtoken.models import Token
+from rest_framework.authtoken.views import ObtainAuthToken
+from rest_framework.response import Response
+
+class ClassName(ObtainAuthToken):
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data,
+                                           context={'request': request})
+        serializer.is_valid(raise_exception=True)
+        user = serializer.validated_data['user']
+        token, created = Token.objects.get_or_create(user=user)
+        return Response({
+            'token': token.key,
+            'user_id': user.pk,
+            'email': user.email
+        })
+
+*** urls ***
+urlpatterns = [
+    ...
+    path('auth/', include('rest_framework.urls'), namespace='rest_framework'),
+    path('get_auth_token/', ClassName.as_view(), name='create_token'),
+    ...
+]
