@@ -1,0 +1,58 @@
+*** Django Rest Framework *** 
+*** ViewSet ***
+# imports 
+from rest_framework import status 
+from rest_framework import viewsets
+from .serializer import SerializerClass 
+from .models import ModelName
+
+# Full API 
+class ClassName(viewsets.ViewSet):
+    def list(self, request):
+        qs = ModelName.objects.all()
+        sr = SerializerClass(qs, many=True)
+        return Response(sr.data)
+
+    def retrieve(self, request, pk=None):
+        id = pk
+        if id is not None:
+            qs = ModelName.objects.get(id=id)
+            sr = SerializerClass(qs)
+            return Response(sr.data)
+    
+    def create(self,request):
+        sr = SerializerClass(data = request.data)
+        if sr.is_valid():
+            sr.save()
+            return Response({'msg':'Data Created'}, status = status.HTTP_201_CREATED)
+        return Response(sr.errors, status = status.HTTP_400_BAD_REQUEST)
+
+    def update(self, request, pk):
+        id = pk
+        qs = ModelName.objects.get(id=id)
+        sr = SerializerClass(qs, data=request.data)
+            if sr.is_valid():
+                sr.save()
+                return Response({'msg':'Data Updated'})
+
+            return Response(sr.errors, status = status.HTTP_400_BAD_REQUEST)
+
+    def destroy(self, request, pk):
+        qs = ModelName.objects.get(id=pk)
+        qs.delete()
+        return Response({'msg' : 'Data Deleted'})
+        
+
+*** Rest Framework Router ***
+# imports
+from rest_framework.routers imports DefaultRouter
+from . imports views
+
+# router
+router = DefaultRouter()
+
+# register route
+router.register('Api', views.ClassName, basename='api_name')
+
+# url
+path('path-name', include(router.urls))

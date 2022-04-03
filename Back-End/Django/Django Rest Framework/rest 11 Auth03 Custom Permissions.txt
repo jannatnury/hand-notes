@@ -1,0 +1,12 @@
+*** Django Rest Framework ***
+*** Custom Authentication ***
+
+# create new permissions.py file
+# add the following permissions
+from rest_framework.permissions import BasePermission
+
+class ClassName(BasePermission):
+    def has_permission(self, request, view):
+        if request.methods == 'GET':
+            return True
+        return False

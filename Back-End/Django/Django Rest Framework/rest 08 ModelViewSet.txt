@@ -1,0 +1,31 @@
+*** Django Rest Framework *** 
+*** ModelViewSet ***
+# imports 
+from rest_framework import status 
+from rest_framework import viewsets
+from .serializer import SerializerClass 
+from .models import ModelName
+
+# Full API With CRUD
+class ClassName(viewsets.ModelViewSet):
+    queryset = ModelName.objects.all()
+    serializer_class = SerializerClass
+
+class ClassName(viewsets.ReadOnlyModelViewSet):
+    queryset = ModelName.objects.all()
+    serializer_class = SerializerClass
+     
+
+*** Rest Framework Router ***
+# imports
+from rest_framework.routers imports DefaultRouter
+from . imports views
+
+# router
+router = DefaultRouter()
+
+# register route
+router.register('Api', views.ClassName, basename='api_name')
+
+# url
+path('path-name', include(router.urls))
