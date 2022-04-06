@@ -1,0 +1,67 @@
+*** React core concepts ***
+*** Hooks and custom hooks ***
+
+*** useState hooks ***
+function AppName(){
+	const [count, setCount] = useState(0);
+	useEffect(() => {
+		fetch('url')
+			.then(res => res.json())
+			.then(data => setCount(data))
+			.catch(err => console.log(err))
+	},[]);
+
+    // sending state update function to child Components
+    const increment = () => {
+        setCount(count + 1);
+    }
+
+	return (
+        <div> <Counter
+            count={count}
+            increment={increment}
+        ></Counter> 
+        </div>
+    )
+}
+
+*** Custom Hooks ***
+# create a separate file for custom hooks
+
+// Custom Hooks without arguments
+import { useState, useEffect } from 'react';
+
+const useProduct = () => {
+    const [product, setProduct] = useState([]);
+
+    useEffect(() => {
+        fetch('url')
+            .then(res => res.json())
+            .then(data => {
+                setProduct(data.data);
+            });
+    }, []);
+
+    return [product, setProduct];
+}
+
+export default useProduct;
+
+# custom hooks with arguments
+
+const useCarts = (products) => {
+    const [carts, setCarts] = useState([]);
+    useEffect(() => {
+        useEffect(() => {
+        fetch('url')
+            .then(res => res.json())
+            .then(data => {
+                setCarts(data);
+            });
+    }, []);
+
+    }, [products])
+    return [carts, setCarts]
+}
+
+export default useCarts;
