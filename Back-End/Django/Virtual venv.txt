@@ -2,13 +2,18 @@
 
 	*** install venv on local.
 		py -m pip install --user virtualenv 
+		
 
 	*** to create virtual environment:
 		python -m venv .  or folder name
  		. used for not creating folder
+ 	*** linux 
+ 		python3 -m venv . or folder name
 
 	*** Active venv:
 		.\Scripts\activate
+	*** linux 
+		source my-project-env/bin/activate
 
 	*** Update venv
 		python -m venv --upgrade . / env_dir

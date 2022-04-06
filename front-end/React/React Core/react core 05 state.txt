@@ -1,0 +1,27 @@
+*** State and update state ***
+
+*** Functional  useState Hooks ***
+function AppName(){
+	const [count, setCount] = useState(0);
+	useEffect(() => {
+		fetch('url')
+			.then(res => res.json())
+			.then(data => setCount(data))
+			.catch(err => console.log(err))
+	},[]);
+	return <div> {count} </div>
+}
+
+const AppName = () =>{
+	const [count, setCount] = useState(0);
+	useEffect(() => {
+		fetch('url')
+			.then(res => res.json())
+			.then(data => setCount(data))
+			.catch(err => console.log(err))
+	},[]);
+	return <div> {count} </div>
+}
+
+export default AppName;
+

@@ -1,0 +1,47 @@
+*** Events ***
+*** events এর সাহায্যে user এর মুভমেন্ট সহ ক্লাইন্ট সাইডে অনেক ধরনের ডাইনামিক পরিবর্তন করা হয়। কোন বাটনে ক্লিক করলে কি ঘটবে 
+ফর্ম সাবমিট করলে কি করা হবে তা events এর সাহায্যে নিয়ন্ত্রন করা হয়। কোন element এ  value use করা হলে তার সাথে onChange handaler ব্যবহার করতে হবে।
+
+*** imports ***
+import React from 'react'
+import './App.css';
+class App extends React.Component{
+
+*** state ***
+  state = {
+    name:'',
+  }
+  *** event handaler ***
+  typed = (event)=>{
+    this.setState({name: event.target.value})
+  }
+  
+  *** event handaler ***
+  focus = (event)=>{
+    console.log('I\'m focused')
+  }
+  
+  *** event handaler ***
+  blur = (event)=>{
+    console.log('====================================');
+    console.log('I am blur');
+    console.log('====================================');
+  }
+
+  render() {
+    return <section>
+      <div className = 'wrapper'>
+        <label for="name">Enter Your Name</label>
+		
+		*** event handaler function binding ***
+		
+        <input type="text" id="name" name="name" value={this.state.name} onChange={this.typed} onFocus={this.focus} 
+        onBlur={this.blur} />
+        {this.state.name && <h1>Welcome, {this.state.name}</h1>}
+      </div>
+    </section>
+  }
+}
+
+
+export default App;

@@ -2,11 +2,13 @@
 
 *** Components
 *** Props
+*** Context Api
 *** State and state update
+*** State lifting up
+*** Hooks and Custom Hooks
 *** Events
 *** Conditional Renderinng
 *** Styling 
 *** List and table
 *** Forms and Inputs
-*** State lifting up
 *** Composition

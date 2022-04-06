@@ -1,0 +1,29 @@
+*** React Context api ***
+*** Sending data from parent to child using context api ***
+import React, { createContext, useContext, Provider, useReducer } from 'react';
+
+const NameContext = React.createContext('Sabbir');
+
+const AppName = () =>{
+    return(
+        <div>
+            <NameContext.Provider value="NameContext">
+                <Child />
+            </NameContext.Provider>
+        </div>
+    )
+}
+
+export default AppName;
+
+*** receiving data from child to parent using context api ***
+import React, { createContext, useContext, useReducer } from 'react';
+
+const Child = (props) =>{
+    const value = useContext(NameContext);
+	return <div> {value} </div>
+}
+
+<Child/>
+
+export default Child;

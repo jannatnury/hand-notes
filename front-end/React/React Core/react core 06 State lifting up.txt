@@ -1,0 +1,32 @@
+*** State and update state ***
+
+*** sending state update function to child Components ***
+function AppName(){
+	const [count, setCount] = useState(0);
+	useEffect(() => {
+		fetch('url')
+			.then(res => res.json())
+			.then(data => setCount(data))
+			.catch(err => console.log(err))
+	},[]);
+
+    // sending state update function to child Components
+    const increment = () => {
+        setCount(count + 1);
+    }
+
+	return (
+        <div> <Counter
+            count={count}
+            increment={increment}
+        ></Counter> 
+        </div>
+    )
+}
+
+*** child Component ***
+*** state lifting ***
+const AppName = ({count, increment}) =>{
+	
+	return <div onCLick={increment}> {count} </div>
+}

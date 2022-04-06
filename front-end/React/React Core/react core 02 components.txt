@@ -1,22 +1,29 @@
 *** Components ***
 components 2 types
 
-*** functional or dumb components
+*** functional components
 *** Class components
 
-*** Functional or dumb components *** used for only jsx layer ***
+*** Functional components ***
 function AppName(){
 	return <div> Jsx </div>
 }
 
+*** functional components without state hooks / stateless ***
 const AppName = () =>{
+	return <div> Jsx </div>
+}
+
+*** functional components with state Hooks /stateful components ***
+const AppName = ()=>{
+	const [count, setCount] = useState(0);
 	return <div> Jsx </div>
 }
 
 
 export default AppName;
 
-*** Class components *** used for data/logical and jsx layer ***
+*** Class components ***
 
 import react from 'react';
 

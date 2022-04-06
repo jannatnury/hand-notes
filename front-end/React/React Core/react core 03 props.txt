@@ -1,5 +1,4 @@
 *** Components with props ***
-components 2 types
 
 *** props used to send data from parents to child components ***
 
@@ -15,11 +14,12 @@ const AppName = (props) =>{
 
 export default AppName;
 
-*** Class components *** used for data/logical and jsx layer ***
+*** Class components ***
 
 import react from 'react';
 
 class AppName extends React.component {
+
 	render(){
 		return <div> {this.props.name} </div>
 	}
