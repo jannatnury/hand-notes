@@ -1,0 +1,72 @@
+*** Django Rest Framework ***
+*** Throttling ***
+
+# settings for throttling:
+REST_FRAMEWORK = {
+    'DEFAULT_THROTTLE_CLASSES': (
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle'
+    ),
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '100/day',
+        'user': '1000/day'
+    }
+}
+
+# views
+from rest_framework.throttling import AnonRateThrottle, UserRateThrottle
+
+class ClassName(viewsets.ReadOnlyModelViewSet):
+    queryset = ModelName.objects.all()
+    serializer_class = SerializerClass
+    throttle_classes = (AnonRateThrottle, UserRateThrottle)
+
+# custom throttle
+from rest_framework.throttling import BaseThrottle
+class ClassName(BaseThrottle):
+    scope = 'name'
+
+# settings for throttling:
+REST_FRAMEWORK = {
+    'DEFAULT_THROTTLE_CLASSES': (
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle'
+    ),
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '100/day',
+        'user': '1000/day',
+        'name': '10/day'
+    }
+}
+
+# views
+# set custom throttle
+from .throttling import ClassName
+
+class ClassName(viewsets.ReadOnlyModelViewSet):
+    queryset = ModelName.objects.all()
+    serializer_class = SerializerClass
+    throttle_classes = (AnonRateThrottle, ClassName)
+
+
+# Scoped based throttling
+from rest_framework.throttling import ScopedRateThrottle
+
+class ClassName(viewsets.ReadOnlyModelViewSet):
+    queryset = ModelName.objects.all()
+    serializer_class = SerializerClass
+    throttle_classes = (AnonRateThrottle, ScopedRateThrottle)
+    throttle_scope = 'name'
+
+# settings for scope based throttling:
+REST_FRAMEWORK = {
+    'DEFAULT_THROTTLE_CLASSES': (
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle'
+    ),
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '100/day',
+        'user': '1000/day',
+        'name': '10/day'
+    }
+}
