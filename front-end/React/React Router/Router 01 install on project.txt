@@ -1,0 +1,33 @@
+*** React Router ***
+*** install router on projects ***
+step 01:
+cmd: npm install react-router-dom@6
+
+step 02:
+*** index.js file
+import { BrowserRouter } from "react-router-dom";
+
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
+  
+*** App.js
+
+import {
+  Routes,
+  Route,
+} from "react-router-dom";
+
+<Routes>
+    <Route path="/" element={<App />} />
+    <Route path="expenses" element={<Expenses />} />
+    <Route path="invoices" element={<Invoices />} />
+</Routes>
+
+
+*** Navbar.js
+
+<nav>
+    <Link to="/invoices">Invoices</Link>
+    <Link to="/expenses">Expenses</Link>
+</nav>

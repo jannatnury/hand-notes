@@ -1,0 +1,26 @@
+*** Django Rest-Framework ***
+*** Filter ***
+
+# install
+pip install django-filter
+
+# Global settings:
+INSTALLED_APPS = (
+    ...
+    'rest_framework',
+    'django_filters',
+    ...
+)
+
+REST_FRAMEWORK = {
+    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend",]
+}
+
+# views
+
+class ClassName(generics.ListCreateAPIView):
+    queryset = ClassName.objects.all()
+    serializer_class = ClassNameSerializer
+    filter_backends = [DjangoFilterBackend,] # when we don't use global
+    filter_fields = ['field_name',]
+

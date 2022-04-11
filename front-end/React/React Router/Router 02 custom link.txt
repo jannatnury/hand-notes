@@ -1,0 +1,37 @@
+*** React router ***
+*** react custom link/ navbar ***
+
+import React from "react";
+import { Link, useMatch, useResolvedPath } from 'react-router-dom';
+
+// Custom link component
+function CustomLink({ children, to, ...props }) {
+    let resolved = useResolvedPath(to);
+    let match = useMatch({ path: resolved.pathname, end: true });
+
+    return (
+        <div>
+            <Link
+                style={{ textDecoration: match ? "underline" : "none", color: match ? "blue" : "black" }}
+                to={to}
+                {...props}
+            >
+                {children}
+            </Link>
+        </div>
+    );
+}
+export default CustomLink;
+
+*** using custom link/ navbar ***
+
+import CustomLink from '../Customlink/Customlink';
+<nav>
+    <div className="nav-links">
+        <CustomLink to='/'>Home</CustomLink>
+        <CustomLink to='/reviews'>Reviews</CustomLink>
+        <CustomLink to='/dashboard'>Dashboard</CustomLink>
+        <CustomLink to='/blogs'>Blogs</CustomLink>
+        <CustomLink to='/about'>About</CustomLink>
+    </div>
+</nav>
