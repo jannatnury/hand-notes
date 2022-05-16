@@ -1,0 +1,19 @@
+*** Django rest_framework ***
+*** Pagination ***
+*** cursor pagination ***
+
+*** Global settings
+*** settings.py
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.CursorPagination',
+    'PAGE_SIZE': 100
+}
+
+*** per view settings ***
+*** custom pagination class ***
+from rest_framework.pagination import CursorPagination
+
+class Pagination(CursorPagination):
+    page_size = 10
+    ordering = '-created'
+    cursor_query_param = 'cursor'
