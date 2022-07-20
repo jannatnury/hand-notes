@@ -1,0 +1,27 @@
+*** rest framework ***
+*** serializer relation ***
+
+*** models.py 
+class ModelName00(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+class ModelName01(models.Model):
+    name = models.CharField(max_length=100,related_name='model_name01')
+
+    def __str__(self):
+        return self.name
+
+*** serializers.py
+class ModelName00Serializer(serializers.ModelSerializer):
+    class Meta:
+        model = ModelName00
+        fields = ('id', 'name')
+
+class ModelName01Serializer(serializers.ModelSerializer):
+    song = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+    class Meta:
+        model = ModelName01
+        fields = ('id', 'name', song)
