@@ -1,0 +1,32 @@
+***** MongoDB Cli *****
+run mongodb on cli:
+    * mongosh + enter
+
+Database:
+    * show dbs
+    * use <dbname>
+    * show collections
+    * db.createCollection('<collectionname>')
+    * db.dropDatabase()
+
+CRUD:
+    * Create:
+        * db.<collectionname>.insert({<key>:<value>})
+        * db.<collectionname>.insertOne({<key>:<value>})
+        * db.<collectionname>.insertMany({<key>:<value>})
+
+    * Read:
+        * db.<collectionname>.find({<key>:<value>})
+        * db.<collectionname>.findOne({<key>:<value>})
+        * db.<collectionname>.find({<key>:<value>}, {<key>:<value>})
+
+    * Update:
+        * db.<collectionname>.update({<key>:<value>}, {$set:{<key>:<value>}})
+        * db.<collectionname>.updateOne({<key>:<value>}, {$set:{<key>:<value>}})
+        * db.<collectionname>.replaceOne({<key>:<value>}, {$set:{<key>:<value>}})
+
+    * Delete:
+        * db.<collectionname>.deleteOne({<key>:<value>})
+        * db.<collectionname>.deleteMany({<key>:<value>})
+        
+

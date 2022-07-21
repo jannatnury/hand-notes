@@ -1,0 +1,10 @@
+Download Links:
+MongoDB: https://www.mongodb.com/try/download/community
+Mongosh: https://www.mongodb.com/try/download/shell
+MongoDB Campass: https://www.mongodb.com/try/download/compass
+
+Checking:
+mongod --version
+mongosh --version
+
+
