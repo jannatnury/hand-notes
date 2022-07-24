@@ -1,6 +1,7 @@
 ***** install and setup for project *****
 create folder for project with project name
 cd into project folder
+
 # 1. install dependencies
     npm i express cors mongoose jsonwebtoken 
 
