@@ -1,0 +1,89 @@
+***** controller *****
+// imports 
+import NameModel from '../models/NameModel.js';
+
+// get data : get method
+const getData = async (req, res) => {
+    const results = await NameModel.find({})
+    res.send(results)
+};
+
+// Create a data : post method
+const createData = async (req, res) => {
+    try {
+        const { title, price } = req.body;
+        if (title && price) {
+            const data = new NameModel({
+                title: title,
+                price: price
+            });
+            const result = await data.save();
+            res.send(result);
+        } else {
+            return res.send({
+                message: 'Please fill the required fields'
+            });
+        };
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+// Update a Data : PUT/PATCH
+const updateData = async (req, res) => {
+    try {
+        const id = req.params.id;
+        if (id) {
+            const data = await NameModel.findById(id)
+            if (data) {
+                const { title, price } = req.body;
+                if (title && price) {
+                    const result = await data.update({
+                        title: title,
+                        price: price
+                    })
+                    return res.send({
+                        message: "data updated", result
+                    })
+                } else {
+                    return res.send({
+                        message: "fil the required fields"
+                    })
+                }
+            } else {
+                return res.send({
+                    message: "data not found."
+                })
+            }
+        }
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+// Delete a data : DELETE Method
+const deleteData = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const data = await NameModel.findById(id)
+        if (data) {
+            await NameModel.findByIdAndRemove(id)
+            res.send({
+                message: "data deleted successfully"
+            })
+        } else {
+            res.send({
+                message: "data not found"
+            })
+        }
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export {
+    getData, // GET Method
+    createData, // POST Method
+    updateData, // PUT Method
+    deleteData, // DELETE Method
+}
