@@ -1,0 +1,27 @@
+***** Create nameModel.js file in models folder *****
+// imports
+import mongoose from "mongoose";
+
+// Defining Schema
+const productSchema = new mongoose.Schema({
+    title: { type: String, required: true },
+    price: { type: Number, required: true }
+});
+
+// Schema type:
+    * String
+    * Number
+    * Date
+    * Buffer
+    * Boolean
+    * Mixed
+    * ObjectId
+    * Array
+    * Decimal128
+    * Map
+    * Embedded
+
+// Model
+const ProductModel = mongoose.model("product", productSchema);
+
+export default ProductModel;

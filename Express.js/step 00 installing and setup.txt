@@ -3,7 +3,7 @@ create folder for project with project name
 cd into project folder
 
 # 1. install dependencies
-    npm i express cors mongoose jsonwebtoken 
+    npm i express cors dotenv mongoose jsonwebtoken 
 
 # 2. setup project
     * create index.js file
