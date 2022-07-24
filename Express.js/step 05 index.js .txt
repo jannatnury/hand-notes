@@ -1,0 +1,5 @@
+// imports
+import nameRouter from './routes/nameRoute.js'
+
+// product route
+app.use('/api/route_name', nameRouter)

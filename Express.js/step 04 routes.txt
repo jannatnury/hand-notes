@@ -1,0 +1,17 @@
+// imports
+import express from 'express';
+const router = express.Router();
+import {
+    getData,
+    createData,
+    updateData,
+    deleteData
+} from '../controller/nameController.js';
+
+// routes
+router.get('/all', getData); // GET: Fetching data
+router.post('/create', createData); // POST: Creating data
+router.put('/update/:id', updateData); // PUT/PATCH: Updating data
+router.delete('/delete/:id', deleteData); // Delete: Deleting data
+
+export default router
