@@ -1,0 +1,21 @@
+***** install and setup for project *****
+create folder for project with project name
+cd into project folder
+# 1. install dependencies
+    npm i express cors mongoose jsonwebtoken 
+
+# 2. setup project
+    * create index.js file
+    * create .env file
+    * create .gitignore file
+    * create models, middleware, controllers, routes, config folders
+
+# 3. package.json
+    * add those lines:
+    "scripts": {
+    "start": "node index.js",
+    "start-dev": "nodemon index.js"
+  },
+  "type": "module",
+
+# 4. add this project to github.
